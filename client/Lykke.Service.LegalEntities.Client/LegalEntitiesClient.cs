@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Lykke.Service.LegalEntities.Client.Api;
 using Lykke.Service.LegalEntities.Client.Models;
@@ -44,60 +45,38 @@ namespace Lykke.Service.LegalEntities.Client
             _runner = new ApiRunner();
         }
 
-        public async Task<ClientSwiftCredentialsModel> GetClientSwiftCredentialsAsync(string clientId, string legalEntityId, string assetId)
-        {
-            return await _runner.RunAsync(() => _clientApi.GetSwiftCredentialsAsync(clientId, legalEntityId, assetId));
-        }
+        public Task<ClientSwiftCredentialsModel> GetClientSwiftCredentialsAsync(string clientId, string legalEntityId, string assetId, CancellationToken cancellationToken = default(CancellationToken))
+            => _runner.RunAsync(() => _clientApi.GetSwiftCredentialsAsync(clientId, legalEntityId, assetId, cancellationToken));
 
-        public async Task<IReadOnlyList<LegalEntityModel>> GetLegalEntitiesAllAsync()
-        {
-            return await _runner.RunAsync(() => _legalEntitiesApi.GetAllAsync());
-        }
+        public Task<IReadOnlyList<LegalEntityModel>> GetLegalEntitiesAllAsync(CancellationToken cancellationToken = default(CancellationToken))
+            => _runner.RunAsync(() => _legalEntitiesApi.GetAllAsync(cancellationToken));
 
-        public async Task<LegalEntityModel> GetLegalEntitiesByIdAsync(string legalEntityId)
-        {
-            return await _runner.RunAsync(() => _legalEntitiesApi.GetByIdAsync(legalEntityId));
-        }
+        public Task<LegalEntityModel> GetLegalEntitiesByIdAsync(string legalEntityId, CancellationToken cancellationToken = default(CancellationToken))
+            => _runner.RunAsync(() => _legalEntitiesApi.GetByIdAsync(legalEntityId, cancellationToken));
 
-        public async Task AddLegalEntityAsync(CreateLegalEntityModel model)
-        {
-            await _runner.RunAsync(() => _legalEntitiesApi.AddAsync(model));
-        }
+        public Task AddLegalEntityAsync(CreateLegalEntityModel model, CancellationToken cancellationToken = default(CancellationToken))
+            => _runner.RunAsync(() => _legalEntitiesApi.AddAsync(model, cancellationToken));
 
-        public async Task UpdateLegalEntityAsync(EditLegalEntityModel model)
-        {
-            await _runner.RunAsync(() => _legalEntitiesApi.UpdateAsync(model));
-        }
+        public Task UpdateLegalEntityAsync(EditLegalEntityModel model, CancellationToken cancellationToken = default(CancellationToken))
+            => _runner.RunAsync(() => _legalEntitiesApi.UpdateAsync(model, cancellationToken));
 
-        public async Task DeleteLegalEntityAsync(string legalEntityId)
-        {
-            await _runner.RunAsync(() => _legalEntitiesApi.DeleteAsync(legalEntityId));
-        }
+        public Task DeleteLegalEntityAsync(string legalEntityId, CancellationToken cancellationToken = default(CancellationToken))
+            => _runner.RunAsync(() => _legalEntitiesApi.DeleteAsync(legalEntityId, cancellationToken));
 
-        public async Task<IReadOnlyList<SwiftCredentialsModel>> GetLegalEntitySwiftCredentialsAsync(string legalEntityId)
-        {
-            return await _runner.RunAsync(() => _legalEntitiesApi.GetSwiftCredentialsAsync(legalEntityId));
-        }
+        public Task<IReadOnlyList<SwiftCredentialsModel>> GetLegalEntitySwiftCredentialsAsync(string legalEntityId, CancellationToken cancellationToken = default(CancellationToken))
+            => _runner.RunAsync(() => _legalEntitiesApi.GetSwiftCredentialsAsync(legalEntityId, cancellationToken));
 
-        public async Task<ClientSwiftCredentialsModel> GetSwiftCredentialsByIdAsync(string swiftCredentialsId)
-        {
-            return await _runner.RunAsync(() => _swiftCredentialsApi.GetByIdAsync(swiftCredentialsId));
-        }
+        public Task<ClientSwiftCredentialsModel> GetSwiftCredentialsByIdAsync(string swiftCredentialsId, CancellationToken cancellationToken = default(CancellationToken))
+            => _runner.RunAsync(() => _swiftCredentialsApi.GetByIdAsync(swiftCredentialsId, cancellationToken));
 
-        public async Task AddSwiftCredentialsAsync(CreateSwiftCredentialsModel model)
-        {
-            await _runner.RunAsync(() => _swiftCredentialsApi.AddAsync(model));
-        }
+        public Task AddSwiftCredentialsAsync(CreateSwiftCredentialsModel model, CancellationToken cancellationToken = default(CancellationToken))
+            => _runner.RunAsync(() => _swiftCredentialsApi.AddAsync(model, cancellationToken));
 
-        public async Task UpdateSwiftCredentialsAsync(EditSwiftCredentialsModel model)
-        {
-            await _runner.RunAsync(() => _swiftCredentialsApi.UpdateAsync(model));
-        }
+        public Task UpdateSwiftCredentialsAsync(EditSwiftCredentialsModel model, CancellationToken cancellationToken = default(CancellationToken))
+            => _runner.RunAsync(() => _swiftCredentialsApi.UpdateAsync(model, cancellationToken));
 
-        public async Task DeleteSwiftCredentialsAsync(string swiftCredentialsId)
-        {
-            await _runner.RunAsync(() => _swiftCredentialsApi.DeleteAsync(swiftCredentialsId));
-        }
+        public Task DeleteSwiftCredentialsAsync(string swiftCredentialsId, CancellationToken cancellationToken = default(CancellationToken))
+            => _runner.RunAsync(() => _swiftCredentialsApi.DeleteAsync(swiftCredentialsId, cancellationToken));
 
         public void Dispose()
         {

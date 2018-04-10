@@ -37,7 +37,8 @@ namespace Lykke.Service.LegalEntities
                 .As<ILog>()
                 .SingleInstance();
             
-            builder.RegisterInstance(new PersonalDataService(_personalDataServiceClientSettings, _log))
+            builder.RegisterType<PersonalDataService>()
+                .WithParameter(TypedParameter.From(_personalDataServiceClientSettings))
                 .As<IPersonalDataService>()
                 .SingleInstance();
             

@@ -1,4 +1,6 @@
-﻿namespace Lykke.Service.LegalEntities.Client 
+﻿using Lykke.SettingsReader.Attributes;
+
+namespace Lykke.Service.LegalEntities.Client 
 {
     /// <summary>
     /// Settings for <see cref="ILegalEntitiesClient"/>.
@@ -16,6 +18,7 @@
         /// <summary>
         /// The asset disclaimers service url.
         /// </summary>
+        [HttpCheck("api/isalive")]
         public string ServiceUrl {get; set;}
     }
 }
