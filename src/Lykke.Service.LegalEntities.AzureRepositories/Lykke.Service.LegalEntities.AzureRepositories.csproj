@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>Lykke.Service.LegalEntities.AzureRepositories</AssemblyName>
+    <RootNamespace>Lykke.Service.LegalEntities.AzureRepositories</RootNamespace>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="Lykke.AzureStorage" Version="8.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lykke.Service.LegalEntities.Core\Lykke.Service.LegalEntities.Core.csproj" />
+  </ItemGroup>
+</Project>
